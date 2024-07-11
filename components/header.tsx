@@ -11,17 +11,19 @@ import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar";
 
 export default function Header() {
   return (
-    <header className="bg-background shadow-sm ">
-      <div className="px-4 py-3 flex items-center justify-between mx-auto w-11/12">
+    <header className="bg-background shadow-sm">
+      <div className="mx-auto flex w-11/12 items-center justify-between px-4 py-3">
         <Link href="/" className="text-lg font-semibold" prefetch={false}>
           Law Firm
         </Link>
         <div className="flex items-center gap-4">
-          <Button variant="outline">Login</Button>
+          <Button variant="outline" asChild>
+            <Link href="/login">Login</Link>
+          </Button>
           <DropdownMenu>
             <DropdownMenuTrigger asChild>
               <Button variant="ghost" size="icon" className="rounded-full">
-                <Avatar className="w-8 h-8">
+                <Avatar className="h-8 w-8">
                   <AvatarImage src="/placeholder-user.jpg" />
                   <AvatarFallback>JD</AvatarFallback>
                 </Avatar>

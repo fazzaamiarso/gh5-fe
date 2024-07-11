@@ -125,7 +125,7 @@ export default function Home() {
       </div>
       {mockCaseData.map(({ id, attorney, category, status }) => {
         return (
-          <Card className="rounded-lg bg-background p-4 shadow-md">
+          <Card key={id} className="rounded-lg bg-background p-4 shadow-md">
             <div className="flex items-center gap-4">
               <Avatar className="h-12 w-12">
                 <AvatarImage src="/placeholder-user.jpg" />

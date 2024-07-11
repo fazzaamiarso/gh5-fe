@@ -11,7 +11,7 @@ import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
 
-export default function TabsDemo() {
+export default function LoginCard() {
   return (
     <div className="mt-10 flex items-center justify-center">
       <Tabs defaultValue="account" className="w-[400px]">
@@ -28,10 +28,9 @@ export default function TabsDemo() {
             <CardHeader>
               <div className="flex">
                 <div>
-                  <CardTitle>Account</CardTitle>
+                  <CardTitle>Client</CardTitle>
                   <CardDescription>
-                    Make changes to your account here. Click save when you're
-                    done.
+                    Login to request for lawyers help
                   </CardDescription>
                 </div>
               </div>
@@ -47,14 +46,14 @@ export default function TabsDemo() {
               </div>
             </CardContent>
             <CardFooter>
-              <Button className="w-full">Save password</Button>
+              <Button className="w-full">Login</Button>
             </CardFooter>
           </Card>
         </TabsContent>
         <TabsContent value="password">
           <Card className="rounded-none border-none shadow-none">
             <CardHeader>
-              <CardTitle>Lawyer area</CardTitle>
+              <CardTitle>Lawyer</CardTitle>
               <CardDescription>
                 Lorem ipsum dolor sit, amet consectetur adipisicing elit.
               </CardDescription>

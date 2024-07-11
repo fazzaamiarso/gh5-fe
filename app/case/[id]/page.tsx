@@ -3,6 +3,7 @@
 import { Button } from "@/components/ui/button";
 import { Avatar, AvatarImage, AvatarFallback } from "@/components/ui/avatar";
 import React from "react";
+import Link from "next/link";
 
 export default function CaseDetail({ params }: { params: { id: string } }) {
   return (
@@ -10,13 +11,14 @@ export default function CaseDetail({ params }: { params: { id: string } }) {
       <div className="grid grid-cols-1 gap-8 md:grid-cols-2">
         <div>
           <div className="flex items-center gap-4">
-            <Avatar className="w-12 h-12">
+            <Avatar className="h-12 w-12">
               <AvatarImage src="/placeholder-user.jpg" />
               <AvatarFallback>J</AvatarFallback>
             </Avatar>
             <div>
-              <h1>ID: {params.id}</h1>
-              <h2 className="text-2xl font-semibold">John Doe</h2>
+              <h2 className="text-2xl font-semibold">
+                <Link href={`/lawyer/${params.id}`}>John Doe</Link>
+              </h2>
               <p className="text-sm text-muted-foreground">Lead Attorney</p>
             </div>
           </div>

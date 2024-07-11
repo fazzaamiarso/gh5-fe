@@ -7,6 +7,7 @@ import { Card } from "@/components/ui/card";
 import { Checkbox } from "@/components/ui/checkbox";
 import { Label } from "@/components/ui/label";
 import React from "react";
+import { cn } from "@/lib/utils";
 
 const mockCaseData = [
   {
@@ -55,11 +56,11 @@ export default function Home() {
   return (
     <section className="grid grid-cols-1 gap-6 p-4 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4">
       <div className="flex flex-col gap-4">
-        <Card className="bg-background p-4 rounded-lg shadow-md">
-          <h3 className="text-lg font-semibold mb-2">Filters</h3>
+        <Card className="rounded-lg bg-background p-4 shadow-md">
+          <h3 className="mb-2 text-lg font-semibold">Filters</h3>
           <div className="space-y-4">
             <div>
-              <h4 className="text-sm font-semibold mb-2">Status</h4>
+              <h4 className="mb-2 text-sm font-semibold">Status</h4>
               <div className="space-y-2">
                 <div className="flex items-center gap-2">
                   <Checkbox id="filter-status-ongoing" />
@@ -79,7 +80,7 @@ export default function Home() {
               </div>
             </div>
             <div>
-              <h4 className="text-sm font-semibold mb-2">Category</h4>
+              <h4 className="mb-2 text-sm font-semibold">Category</h4>
               <div className="space-y-2">
                 <div className="flex items-center gap-2">
                   <Checkbox id="filter-category-intellectual-property" />
@@ -124,9 +125,9 @@ export default function Home() {
       </div>
       {mockCaseData.map(({ id, attorney, category, status }) => {
         return (
-          <Card className="bg-background p-4 rounded-lg shadow-md">
+          <Card className="rounded-lg bg-background p-4 shadow-md">
             <div className="flex items-center gap-4">
-              <Avatar className="w-12 h-12">
+              <Avatar className="h-12 w-12">
                 <AvatarImage src="/placeholder-user.jpg" />
                 <AvatarFallback>J</AvatarFallback>
               </Avatar>
@@ -142,7 +143,12 @@ export default function Home() {
               <p className="text-sm text-muted-foreground">{category}</p>
             </div>
             <div className="mt-4 flex items-center justify-between">
-              <span className="rounded-full bg-green-500 px-3 py-1 text-xs font-medium text-green-50">
+              <span
+                className={cn("rounded-full px-3 py-1 text-xs font-medium", {
+                  "bg-yellow-500 text-yellow-50": status === "Ongoing",
+                  "bg-red-500 text-red-50": status === "Closed",
+                })}
+              >
                 {status}
               </span>
               <Link

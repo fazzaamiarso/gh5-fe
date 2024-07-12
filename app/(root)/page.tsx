@@ -8,6 +8,7 @@ import { Checkbox } from "@/components/ui/checkbox";
 import { Label } from "@/components/ui/label";
 import React from "react";
 import { cn } from "@/lib/utils";
+import { useSession } from "next-auth/react";
 
 const mockCaseData = [
   {
@@ -53,6 +54,8 @@ const mockCaseData = [
 ];
 
 export default function Home() {
+  const { data: session } = useSession();
+  console.log(session);
   return (
     <section className="grid grid-cols-1 gap-6 p-4 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4">
       <div className="flex flex-col gap-4">

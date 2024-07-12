@@ -3,6 +3,8 @@
 import { Button } from "@/components/ui/button";
 import { Badge } from "@/components/ui/badge";
 import Link from "next/link";
+import { useSession } from "next-auth/react";
+import { redirect } from "next/navigation";
 const mockCaseRequestData = [
   {
     id: "1",
@@ -33,6 +35,10 @@ const mockCaseRequestData = [
 ];
 
 export default function LawyerCases() {
+  const { data: session } = useSession();
+
+  if (session?.user?.role !== "Lawyer") return redirect("/");
+
   return (
     <>
       <section className="container mx-auto px-4 py-8">

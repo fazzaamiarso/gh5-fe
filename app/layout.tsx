@@ -3,6 +3,7 @@ import { cn } from "@/lib/utils";
 import "./globals.css";
 import { ReactNode } from "react";
 import { Metadata } from "next/types";
+import SessionWrapper from "@/components/session-wrapper";
 
 const fontHeading = Inter({
   subsets: ["latin"],
@@ -24,11 +25,13 @@ export const metadata: Metadata = {
 export default function Layout({ children }: { children: ReactNode }) {
   return (
     <html lang="en">
-      <body
-        className={cn("antialiased", fontHeading.variable, fontBody.variable)}
-      >
-        <main className="mx-auto w-11/12">{children}</main>
-      </body>
+      <SessionWrapper>
+        <body
+          className={cn("antialiased", fontHeading.variable, fontBody.variable)}
+        >
+          <main className="mx-auto w-11/12">{children}</main>
+        </body>
+      </SessionWrapper>
     </html>
   );
 }

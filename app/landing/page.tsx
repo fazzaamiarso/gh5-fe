@@ -7,17 +7,17 @@ import Link from "next/link";
 
 const lawyer = [
   {
-    title: "accept cases submitted by Users",
+    title: "Accept cases submitted by users",
     description:
       "- Can accept cases submitted by Users: Lawyers can review and accept cases submitted by users, allowing them to start working on those cases.",
   },
   {
-    title: "update case status, upload related documents",
+    title: "Update case status, upload related documents",
     description:
-      "A streaming service that offers a wide variety of award-winning TV shows, movies, anime, documentaries, and more on thousands of internet-connected devices.",
+      "Lawyers can update the case status and upload related documents, ensuring that all relevant information is easily accessible to all involved parties.",
   },
   {
-    title: "contribute to cases",
+    title: "Contribute to cases",
     description:
       "If there is an ongoing case that interests them, lawyers may ask to contribute to the case to the uploader.",
   },
@@ -29,18 +29,18 @@ const lawyer = [
   {
     title: "Public Case Posting",
     description:
-      "-  Lawyers can post cases publicly, inviting other lawyers to collaborate.",
+      "- Lawyers can post cases publicly, inviting other lawyers to collaborate.",
   },
 ];
 
 const cityzen = [
   {
-    title: "view cases",
+    title: "View cases",
     description:
-      "A technology company that builds economic infrastructure for the internet.",
+      "Users can view the cases they have submitted or other relevant cases, giving them direct access to important information",
   },
   {
-    title: "chat to request cases to lawyers",
+    title: "Chat to request cases to lawyers",
     description:
       "Users can request cases to lawyers through the chat feature, making the initial communication and explanation of their issues easier.",
   },
@@ -58,7 +58,7 @@ const cityzen = [
 
 export default function SpotlightPreview() {
   return (
-    <div className="h-screen">
+    <div className="container h-screen">
       <section className="mx-6 flex justify-between">
         <div>
           <Image alt="justify" width={70} height={70} src="/justify-logo.png" />
@@ -76,7 +76,7 @@ export default function SpotlightPreview() {
         <div className="relative mx-auto max-w-7xl px-4 text-center sm:px-6 lg:px-8">
           <h1 className="font-manrope mx-auto mb-5 max-w-2xl text-center text-4xl font-bold leading-[50px] text-gray-900 md:text-5xl">
             Justify
-            <span className="ml-2 text-indigo-600">- legal assitance</span>
+            <span className="ml-2 text-indigo-600">- Legal Assistance</span>
           </h1>
           <p className="mx-auto mb-9 max-w-3xl text-center text-xl font-normal font-semibold leading-7 text-gray-500">
             Empowering Justice, Enabling Growth
@@ -109,21 +109,21 @@ export default function SpotlightPreview() {
         </div>
 
         <div className="mt-24 flex flex-col items-center justify-center">
-          <h1 className="bg-opacitflex absolute relative flex justify-start bg-clip-text text-4xl font-bold text-indigo-400 md:text-7xl">
-            lawyer
+          <h1 className="bg-opacitflex relative flex justify-start bg-clip-text text-4xl font-bold text-indigo-400 md:text-7xl">
+            👨‍⚖️ Lawyer
           </h1>
           <HoverEffect className="max-w-7xl" items={lawyer} />
         </div>
 
         <div className="mt-24 flex flex-col items-center justify-center">
-          <h1 className="bg-opacitflex absolute relative flex justify-start bg-clip-text text-4xl font-bold text-indigo-400 md:text-7xl">
-            citizen
+          <h1 className="bg-opacitflex relative flex justify-start bg-clip-text text-4xl font-bold text-indigo-400 md:text-7xl">
+            👱 Citizen
           </h1>
           <HoverEffect className="max-w-7xl" items={cityzen} />
         </div>
 
         <div className="mx-auto flex max-w-7xl justify-center justify-between p-7">
-          <h1 className="text-lg font-semibold">Made with 💖</h1>
+          <h1 className="text-lg font-semibold">Made with 💖 and 🔥</h1>
           <h1 className="text-lg font-semibold">Justify ©️</h1>
         </div>
       </section>

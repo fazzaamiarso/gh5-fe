@@ -17,6 +17,9 @@ export default function Header() {
           Law Firm
         </Link>
         <div className="flex items-center gap-4">
+          <Button variant="default" asChild>
+            <Link href="/case/request">Submit Case</Link>
+          </Button>
           <Button variant="outline" asChild>
             <Link href="/login">Login</Link>
           </Button>

@@ -4,7 +4,6 @@ import React from "react";
 import Image from "next/image";
 import { HoverEffect } from "./card";
 import Link from "next/link";
-import { Button } from "@/components/ui/button";
 
 const lawyer = [
   {
@@ -43,7 +42,7 @@ const cityzen = [
   {
     title: "chat to request cases to lawyers",
     description:
-      "A streaming service that offers a wide variety of award-winning TV shows, movies, anime, documentaries, and more on thousands of internet-connected devices.",
+      "Users can request cases to lawyers through the chat feature, making the initial communication and explanation of their issues easier.",
   },
   {
     title: "Upvote to elevate cases",
@@ -105,10 +104,7 @@ export default function SpotlightPreview() {
             </svg>
           </Link>
           <div className="flex justify-center">
-            <img
-              src="https://pagedone.io/asset/uploads/1691054543.png"
-              alt="Dashboard image"
-            />
+            <img src="/namex.png" alt="Dashboard image" />
           </div>
         </div>
 

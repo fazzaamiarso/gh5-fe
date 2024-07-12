@@ -1,9 +1,18 @@
+"use client";
+
 import { Button } from "@/components/ui/button";
 import { Avatar, AvatarImage, AvatarFallback } from "@/components/ui/avatar";
 import React from "react";
 import Link from "next/link";
-import { DownloadIcon, FileTextIcon } from "@radix-ui/react-icons";
+import {
+  ArrowLeftIcon,
+  DownloadIcon,
+  FileTextIcon,
+} from "@radix-ui/react-icons";
 import { cn } from "@/lib/utils";
+import { useRouter } from "next/navigation";
+import { approveCase, rejectCase } from "../../lawyer/[id]/cases/actions";
+import { useSession } from "next-auth/react";
 
 const getCaseById = async (id: string) => {
   const res = await fetch(`${process.env.BASE_API}/cases/${id}`);
@@ -20,10 +29,20 @@ export default async function CaseDetail({
 }: {
   params: { id: string };
 }) {
+  const router = useRouter();
   const { data } = await getCaseById(params.id);
 
   return (
     <section className="container mx-auto px-4 py-8">
+      <Button
+        variant="outline"
+        size="sm"
+        className="mb-6 flex gap-2"
+        onClick={() => router.back()}
+      >
+        <ArrowLeftIcon />
+        Go back
+      </Button>
       <div className="grid grid-cols-1 gap-8 md:grid-cols-3">
         <div className="col-span-2">
           <section className="rounded-sm ring-1 ring-neutral-300">
@@ -105,28 +124,12 @@ export default async function CaseDetail({
             <div className="flex items-center justify-between">
               <div className="flex items-center gap-2">
                 <div className="h-5 w-5 text-muted-foreground" />
-                <span>Patent Infringement Claim</span>
+                <span>Suppporting Document</span>
               </div>
-              <Button variant="outline" size="sm">
-                <DownloadIcon className="mr-1" /> Download
-              </Button>
-            </div>
-            <div className="flex items-center justify-between">
-              <div className="flex items-center gap-2">
-                <div className="h-5 w-5 text-muted-foreground" />
-                <span>Settlement Offer</span>
-              </div>
-              <Button variant="outline" size="sm">
-                <DownloadIcon className="mr-1" /> Download
-              </Button>
-            </div>
-            <div className="flex items-center justify-between">
-              <div className="flex items-center gap-2">
-                <div className="h-5 w-5 text-muted-foreground" />
-                <span>Expert Witness Report</span>
-              </div>
-              <Button variant="outline" size="sm">
-                <DownloadIcon className="mr-1" /> Download
+              <Button variant="outline" size="sm" asChild>
+                <a href={data?.Data?.document} target="_blank">
+                  <DownloadIcon className="mr-1" /> Download
+                </a>
               </Button>
             </div>
           </div>

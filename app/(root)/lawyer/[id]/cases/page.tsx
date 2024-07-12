@@ -2,10 +2,17 @@
 import { Button } from "@/components/ui/button";
 import { Badge } from "@/components/ui/badge";
 import Link from "next/link";
-import { approveCase } from "./actions";
+import { approveCase, rejectCase } from "./actions";
+import { useRouter } from "next/navigation";
+import { useEffect, useState } from "react";
 
 const getCases = async () => {
-  const res = await fetch(`${process.env.BASE_API}/cases`);
+  const res = await fetch(`${process.env.BASE_API}/cases`, {
+    cache: "no-store",
+    next: {
+      tags: ["pending-case"],
+    },
+  });
 
   const data = await res.json();
 
@@ -18,8 +25,15 @@ const getCases = async () => {
   };
 };
 
-export default async function LawyerCases() {
-  const { pendingCases } = await getCases();
+export default function LawyerCases({ params }: { params: { id: string } }) {
+  const router = useRouter();
+  const [pendingCases, setPendingCases] = useState([]);
+
+  useEffect(() => {
+    getCases().then((res) => {
+      setPendingCases(res.pendingCases);
+    });
+  }, []);
 
   return (
     <>
@@ -48,12 +62,13 @@ export default async function LawyerCases() {
                           <Button
                             variant="outline"
                             size="sm"
-                            onClick={async () =>
+                            onClick={async () => {
                               await approveCase({
                                 id: Data.id,
-                                data: {},
-                              })
-                            }
+                                contributor_id: params.id,
+                              });
+                              router.refresh();
+                            }}
                           >
                             Approve
                           </Button>
@@ -61,6 +76,14 @@ export default async function LawyerCases() {
                             variant="outline"
                             size="sm"
                             className="bg-red-500 text-white hover:bg-red-600"
+                            onClick={async () => {
+                              await rejectCase({
+                                id: Data.id,
+                                contributor_id: params.id,
+                              });
+
+                              router.refresh();
+                            }}
                           >
                             Reject
                           </Button>

@@ -17,7 +17,6 @@ import { Textarea } from "@/components/ui/textarea";
 import { useSession } from "next-auth/react";
 import { useEffect } from "react";
 import { redirect } from "next/navigation";
-import { postCase } from "./actions";
 
 const formSchema = z.object({
   caseName: z.string(),
@@ -36,16 +35,13 @@ export default function CaseRequest() {
     const formData = new FormData();
     formData.append("case_name", data.caseName);
     formData.append("case_description", data.caseDescription);
+    formData.append("document", data.caseFile);
     formData.append("client_id", "5cdde6b7-2617-4633-b008-cf606544e59c");
 
     await fetch(`${process.env.BASE_API}/cases`, {
       method: "POST",
       body: formData,
     });
-    // await postCase({
-    //   caseName: data.caseName,
-    //   caseDescription: data.caseDescription,
-    // });
   };
 
   useEffect(() => {

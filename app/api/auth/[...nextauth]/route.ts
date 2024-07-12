@@ -8,7 +8,6 @@ const handler = NextAuth({
   },
   callbacks: {
     async session({ session, user, token }) {
-      console.log(`USER: ${user}`);
       return session;
     },
   },

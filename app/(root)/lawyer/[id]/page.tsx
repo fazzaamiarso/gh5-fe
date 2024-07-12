@@ -1,4 +1,7 @@
 import { Avatar, AvatarImage, AvatarFallback } from "@/components/ui/avatar";
+import { Button } from "@/components/ui/button";
+import Link from "next/link";
+import { redirect } from "next/navigation";
 import React from "react";
 
 const getProfile = async (id: string) => {
@@ -8,7 +11,13 @@ const getProfile = async (id: string) => {
     if (!res.ok) {
       throw new Error("Failed to fetch data");
     }
-    return res.json();
+
+    const data = await res.json();
+    const profile = data?.data?.Data;
+
+    if (!(profile?.role?.name === "Lawyer")) return redirect("/");
+
+    return profile;
   } catch (e) {
     console.log(e!.message);
   }
@@ -19,8 +28,7 @@ export default async function LawyerProfle({
 }: {
   params: { id: string };
 }) {
-  const data = await getProfile(params.id);
-  const profile = data?.data?.Data;
+  const profile = await getProfile(params.id);
 
   if (!profile) return null;
 
@@ -44,6 +52,11 @@ export default async function LawyerProfle({
               </p>
             </div>
           </div>
+          <Button asChild variant="default" className="mt-6">
+            <Link href={`/lawyer/${profile.id}/cases`}>
+              Go to cases dashboard
+            </Link>
+          </Button>
           <div className="mt-8">
             <div className="mt-4 space-y-6">
               <div>

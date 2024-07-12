@@ -1,4 +1,5 @@
 import { Avatar, AvatarImage, AvatarFallback } from "@/components/ui/avatar";
+import { redirect } from "next/navigation";
 import React from "react";
 
 const getProfile = async (id: string) => {
@@ -8,7 +9,10 @@ const getProfile = async (id: string) => {
     throw new Error("Failed to fetch data");
   }
 
-  return res.json();
+  const data = await res.json();
+  const profile = data?.data?.Data;
+
+  return profile;
 };
 
 export default async function UserProfile({
@@ -16,8 +20,7 @@ export default async function UserProfile({
 }: {
   params: { id: string };
 }) {
-  const data = await getProfile(params.id);
-  const profile = data?.data?.Data;
+  const profile = await getProfile(params.id);
 
   if (!profile) return null;
 
@@ -26,6 +29,7 @@ export default async function UserProfile({
       <div className="grid grid-cols-1 gap-8 md:grid-cols-2">
         <div>
           <div>
+            <h3 className="mb-2 text-xl font-semibold">User profile</h3>
             <div className="flex items-center gap-4 rounded-sm p-4 ring-1 ring-neutral-300">
               <Avatar className="h-12 w-12">
                 <AvatarImage src="/placeholder-user.jpg" />
@@ -36,13 +40,12 @@ export default async function UserProfile({
                   {profile?.name ?? "EMPTY"}
                 </h2>
                 <p>
-                  NIK: <span>[PLACEHOLDER ID NUMBER]</span>
+                  NIK: <span>{profile?.identity_card_number}</span>
                 </p>
               </div>
             </div>
           </div>
-          <div className="mt-6">
-            <h3 className="text-xl font-semibold">Profile</h3>
+          <div className="mt-8">
             <div className="mt-4 space-y-4">
               <div>
                 <h4 className="text-lg font-semibold">Address</h4>

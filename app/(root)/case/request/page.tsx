@@ -14,6 +14,9 @@ import { z } from "zod";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Textarea } from "@/components/ui/textarea";
+import { useSession } from "next-auth/react";
+import { useEffect } from "react";
+import { redirect } from "next/navigation";
 
 const formSchema = z.object({
   caseName: z.string(),
@@ -22,6 +25,8 @@ const formSchema = z.object({
 });
 
 export default function CaseRequest() {
+  const { data: session } = useSession();
+
   const form = useForm<z.infer<typeof formSchema>>({
     resolver: zodResolver(formSchema),
   });
@@ -41,6 +46,12 @@ export default function CaseRequest() {
 
     return res;
   };
+
+  useEffect(() => {
+    if (!session?.user) return redirect("/");
+  }, [session?.user]);
+
+  if (!session?.user) return null;
 
   return (
     <div className="py-10">

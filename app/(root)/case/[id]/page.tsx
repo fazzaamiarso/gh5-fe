@@ -2,7 +2,8 @@ import { Button } from "@/components/ui/button";
 import { Avatar, AvatarImage, AvatarFallback } from "@/components/ui/avatar";
 import React from "react";
 import Link from "next/link";
-import { FileTextIcon } from "@radix-ui/react-icons";
+import { DownloadIcon, FileTextIcon } from "@radix-ui/react-icons";
+import { cn } from "@/lib/utils";
 
 const getCaseById = async (id: string) => {
   const res = await fetch(`http://34.101.147.150:8080/api/cases/${id}`);
@@ -41,7 +42,18 @@ export default async function CaseDetail({
                 </div>
                 <div>
                   <h4 className="font-semibold">Status</h4>
-                  <span className="rounded-full bg-green-500 px-3 py-1 text-xs font-medium text-green-50">
+                  <span
+                    className={cn(
+                      "rounded-full px-3 py-1 text-xs font-medium",
+                      {
+                        "bg-yellow-500 text-yellow-50":
+                          data.Data.status === "On Progress",
+                        "bg-red-500 text-red-50": data.Data.status === "Closed",
+                        "bg-neutral-100 text-neutral-500":
+                          data.Data.status === "Pending",
+                      },
+                    )}
+                  >
                     {data.Data.status}
                   </span>
                 </div>
@@ -96,7 +108,7 @@ export default async function CaseDetail({
                 <span>Patent Infringement Claim</span>
               </div>
               <Button variant="outline" size="sm">
-                Download
+                <DownloadIcon className="mr-1" /> Download
               </Button>
             </div>
             <div className="flex items-center justify-between">
@@ -105,7 +117,7 @@ export default async function CaseDetail({
                 <span>Settlement Offer</span>
               </div>
               <Button variant="outline" size="sm">
-                Download
+                <DownloadIcon className="mr-1" /> Download
               </Button>
             </div>
             <div className="flex items-center justify-between">
@@ -114,7 +126,7 @@ export default async function CaseDetail({
                 <span>Expert Witness Report</span>
               </div>
               <Button variant="outline" size="sm">
-                Download
+                <DownloadIcon className="mr-1" /> Download
               </Button>
             </div>
           </div>

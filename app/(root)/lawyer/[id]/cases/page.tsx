@@ -1,6 +1,8 @@
+"use client";
 import { Button } from "@/components/ui/button";
 import { Badge } from "@/components/ui/badge";
 import Link from "next/link";
+import { approveCase } from "./actions";
 
 const getCases = async () => {
   const res = await fetch(`${process.env.BASE_API}/cases`);
@@ -11,8 +13,6 @@ const getCases = async () => {
     return Data.status === "Pending";
   });
 
-  console.log(pendingCases.client);
-
   return {
     pendingCases,
   };
@@ -20,7 +20,6 @@ const getCases = async () => {
 
 export default async function LawyerCases() {
   const { pendingCases } = await getCases();
-  // const { data: session, status } = useSession();
 
   return (
     <>
@@ -32,7 +31,7 @@ export default async function LawyerCases() {
               <div className="mt-4 space-y-4">
                 {pendingCases.map(({ Data }: any) => {
                   return (
-                    <div className="rounded-md bg-background p-4">
+                    <div key={Data.id} className="rounded-md bg-background p-4">
                       <div className="flex items-center justify-between">
                         <div>
                           <h4 className="text-lg font-semibold">
@@ -46,7 +45,16 @@ export default async function LawyerCases() {
                           </p>
                         </div>
                         <div className="flex gap-2">
-                          <Button variant="outline" size="sm">
+                          <Button
+                            variant="outline"
+                            size="sm"
+                            onClick={async () =>
+                              await approveCase({
+                                id: Data.id,
+                                data: {},
+                              })
+                            }
+                          >
                             Approve
                           </Button>
                           <Button

@@ -7,7 +7,7 @@ const handler = NextAuth({
     signIn: "/login",
   },
   callbacks: {
-    async session({ session, user, token }) {
+    async session({ session }) {
       return session;
     },
   },

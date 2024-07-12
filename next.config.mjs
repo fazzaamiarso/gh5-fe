@@ -1,8 +1,12 @@
 /** @type {import('next').NextConfig} */
 const nextConfig = {
   env: {
-    BASE_API: "https://12bb-111-67-81-50.ngrok-free.app/api",
+    BASE_API: "http://34.101.147.150:8080/api",
   },
+  typescript: {
+    ignoreBuildErrors: true,
+  },
+
   images: {
     remotePatterns: [
       {

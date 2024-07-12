@@ -1,5 +1,4 @@
 import { Avatar, AvatarImage, AvatarFallback } from "@/components/ui/avatar";
-import { redirect } from "next/navigation";
 import React from "react";
 
 const getProfile = async (id: string) => {

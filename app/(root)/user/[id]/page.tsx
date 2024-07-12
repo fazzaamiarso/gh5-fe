@@ -1,23 +1,44 @@
-"use client";
-
 import { Avatar, AvatarImage, AvatarFallback } from "@/components/ui/avatar";
 import React from "react";
 
-export default function UserProfile() {
+const getProfile = async (id: string) => {
+  const res = await fetch(`http://34.101.147.150:8080/api/users/${id}`);
+
+  if (!res.ok) {
+    throw new Error("Failed to fetch data");
+  }
+
+  return res.json();
+};
+
+export default async function UserProfile({
+  params,
+}: {
+  params: { id: string };
+}) {
+  const data = await getProfile(params.id);
+  const profile = data?.data?.Data;
+
+  if (!profile) return null;
+
   return (
     <section className="container mx-auto px-4 py-8">
       <div className="grid grid-cols-1 gap-8 md:grid-cols-2">
         <div>
-          <div className="flex items-center gap-4">
-            <Avatar className="h-12 w-12">
-              <AvatarImage src="/placeholder-user.jpg" />
-              <AvatarFallback>J</AvatarFallback>
-            </Avatar>
-            <div>
-              <h2 className="text-2xl font-semibold">John Doe</h2>
-              <p>
-                NIK: <span>3602041211870001</span>
-              </p>
+          <div>
+            <div className="flex items-center gap-4 rounded-sm p-4 ring-1 ring-neutral-300">
+              <Avatar className="h-12 w-12">
+                <AvatarImage src="/placeholder-user.jpg" />
+                <AvatarFallback>J</AvatarFallback>
+              </Avatar>
+              <div>
+                <h2 className="text-2xl font-semibold">
+                  {profile?.name ?? "EMPTY"}
+                </h2>
+                <p>
+                  NIK: <span>[PLACEHOLDER ID NUMBER]</span>
+                </p>
+              </div>
             </div>
           </div>
           <div className="mt-6">
@@ -25,9 +46,7 @@ export default function UserProfile() {
             <div className="mt-4 space-y-4">
               <div>
                 <h4 className="text-lg font-semibold">Address</h4>
-                <p>
-                  741 Esta Mountain, Ponorogo, Sumatera Barat 58876, Indonesia
-                </p>
+                <p>{profile?.address}</p>
               </div>
               <div>
                 <h4 className="text-lg font-semibold">About</h4>

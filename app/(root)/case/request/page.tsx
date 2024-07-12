@@ -50,53 +50,55 @@ export default function CaseRequest() {
         understand your case easily. It will also make your case more likely to
         get approved.
       </p>
-      <Form {...form}>
-        <form onSubmit={form.handleSubmit(onSubmit)} className="space-y-8">
-          <FormField
-            control={form.control}
-            name="caseName"
-            render={({ field }) => (
-              <FormItem>
-                <FormLabel>Case Name</FormLabel>
-                <FormControl>
-                  <Input placeholder="Contoh: Gugatan Cerai" {...field} />
-                </FormControl>
-                <FormMessage />
-              </FormItem>
-            )}
-          />
-          <FormField
-            control={form.control}
-            name="caseDescription"
-            render={({ field }) => (
-              <FormItem>
-                <FormLabel>Case Description</FormLabel>
-                <FormControl>
-                  <Textarea
-                    placeholder="apa yang membuat anda ingin mengajukkan kasus ini"
-                    {...field}
-                  />
-                </FormControl>
-                <FormMessage />
-              </FormItem>
-            )}
-          />
-          <FormField
-            control={form.control}
-            name="caseFile"
-            render={({ field }) => (
-              <FormItem>
-                <FormLabel>Case File</FormLabel>
-                <FormControl>
-                  <Input type="file" {...field} />
-                </FormControl>
-                <FormMessage />
-              </FormItem>
-            )}
-          />
-          <Button type="submit">Submit Case</Button>
-        </form>
-      </Form>
+      <div className="rounded-sm p-4 ring-1 ring-neutral-300">
+        <Form {...form}>
+          <form onSubmit={form.handleSubmit(onSubmit)} className="space-y-8">
+            <FormField
+              control={form.control}
+              name="caseName"
+              render={({ field }) => (
+                <FormItem>
+                  <FormLabel>Case Name</FormLabel>
+                  <FormControl>
+                    <Input placeholder="Contoh: Gugatan Cerai" {...field} />
+                  </FormControl>
+                  <FormMessage />
+                </FormItem>
+              )}
+            />
+            <FormField
+              control={form.control}
+              name="caseDescription"
+              render={({ field }) => (
+                <FormItem>
+                  <FormLabel>Case Description</FormLabel>
+                  <FormControl>
+                    <Textarea
+                      placeholder="apa yang membuat anda ingin mengajukkan kasus ini"
+                      {...field}
+                    />
+                  </FormControl>
+                  <FormMessage />
+                </FormItem>
+              )}
+            />
+            <FormField
+              control={form.control}
+              name="caseFile"
+              render={({ field }) => (
+                <FormItem>
+                  <FormLabel>Case File</FormLabel>
+                  <FormControl>
+                    <Input type="file" {...field} />
+                  </FormControl>
+                  <FormMessage />
+                </FormItem>
+              )}
+            />
+            <Button type="submit">Submit Case</Button>
+          </form>
+        </Form>
+      </div>
     </div>
   );
 }

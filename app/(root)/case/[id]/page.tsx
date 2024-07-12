@@ -61,11 +61,11 @@ export default async function CaseDetail({
               <div>
                 <h2 className="font-semibold">
                   <Link href={`/lawyer/${params.id}`}>
-                    {data.Data.name ?? "EMPTY"}
+                    {data.Data?.contributor?.name ?? "EMPTY"}
                   </Link>
                 </h2>
                 <p className="text-sm text-muted-foreground">
-                  [PLACEHOLDER LAWYER POSITION]
+                  {data?.Data?.contributor?.lawyer?.position ?? "EMPTY"}
                 </p>
               </div>
             </div>
@@ -76,7 +76,9 @@ export default async function CaseDetail({
               </Avatar>
               <div>
                 <h2 className="font-semibold">
-                  <Link href={`/user/23`}>[PLACEHOLDER CLIENT NAME]</Link>
+                  <Link href={`/user/${data?.Data?.client?.id}`}>
+                    {data?.Data?.client?.name ?? "EMPTY"}
+                  </Link>
                 </h2>
                 <p className="text-sm text-muted-foreground">Client</p>
               </div>

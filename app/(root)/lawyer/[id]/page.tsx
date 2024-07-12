@@ -1,39 +1,54 @@
-"use client";
-
 import { Avatar, AvatarImage, AvatarFallback } from "@/components/ui/avatar";
-import { useParams } from "next/navigation";
-import React, { useEffect, useState } from "react";
+import { redirect } from "next/navigation";
+import React from "react";
 
-export default function LawyerProfle() {
-  const [profile, setProfile] = useState<any>(null);
-  const params = useParams();
+const getProfile = async (id: string) => {
+  try {
+    const res = await fetch(`http://34.101.147.150:8080/api/users/${id}`);
 
-  useEffect(() => {
-    fetch(`http://34.101.147.150:8080/api/users/${params.id}`)
-      .then((res) => res.json())
-      .then((data) => {
-        setProfile(data?.data?.Data);
-      });
-  }, []);
-  console.log(profile);
+    if (!res.ok) {
+      throw new Error("Failed to fetch data");
+    }
+    return res.json();
+  } catch (e) {
+    console.log(e!.message);
+  }
+};
+
+export default async function LawyerProfle({
+  params,
+}: {
+  params: { id: string };
+}) {
+  const data = await getProfile(params.id);
+  const profile = data?.data?.Data;
+
+  if (!profile) return null;
+
+  if (!(profile?.role?.name?.toLowerCase() !== "lawyer")) redirect("/");
 
   return (
     <section className="container mx-auto px-4 py-8">
       <div className="grid grid-cols-1 gap-8 md:grid-cols-2">
         <div>
-          <div className="flex items-center gap-4">
+          <h2 className="mb-4 text-2xl font-semibold">Lawyer Profile</h2>
+
+          <div className="flex items-center gap-4 rounded-sm p-4 ring-1 ring-neutral-300">
             <Avatar className="h-12 w-12">
               <AvatarImage src="/placeholder-user.jpg" />
               <AvatarFallback>J</AvatarFallback>
             </Avatar>
             <div>
-              <h2 className="text-2xl font-semibold">{profile?.name}</h2>
-              <p className="text-sm text-muted-foreground">Lead Attorney</p>
+              <h2 className="text-2xl font-semibold">
+                {profile?.name ?? "EMPTY"}
+              </h2>
+              <p className="text-sm text-muted-foreground">
+                [PLACEHOLDER POSITION]
+              </p>
             </div>
           </div>
-          <div className="mt-6">
-            <h3 className="text-xl font-semibold">Profile</h3>
-            <div className="mt-4 space-y-4">
+          <div className="mt-8">
+            <div className="mt-4 space-y-6">
               <div>
                 <h4 className="text-lg font-semibold">About</h4>
                 <p>

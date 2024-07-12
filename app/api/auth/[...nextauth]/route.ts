@@ -1,17 +1,14 @@
 import NextAuth from "next-auth";
 import Credentials from "next-auth/providers/credentials";
+import { jwtDecode } from "jwt-decode";
 
 const handler = NextAuth({
-  session: { strategy: "jwt" },
   pages: {
     signIn: "/login",
   },
   callbacks: {
-    async session({ session, token }) {
-      // session.accessToken = token.accessToken;
-      session.user.id = token.id;
-      session.user.role = "Lawyer";
-
+    async session({ session, user, token }) {
+      console.log(`USER: ${user}`);
       return session;
     },
   },
@@ -19,11 +16,25 @@ const handler = NextAuth({
     Credentials({
       name: "Credentials",
       credentials: {},
-      authorize: async () => {
+      authorize: async (credentials) => {
+        const res = await fetch("http://34.101.147.150:8080/api/auth/login", {
+          method: "POST",
+          body: JSON.stringify(credentials),
+          headers: { "Content-Type": "application/json" },
+        });
+
+        const resData = await res.json();
+
+        const decodedToken = jwtDecode(resData.data.token);
+
+        if (!res.ok) {
+          return null;
+        }
+
         return {
-          id: "asd",
-          name: "Bambang",
-          email: "bambang@gmail.com",
+          id: decodedToken?.id,
+          name: decodedToken.name,
+          email: decodedToken?.id,
         };
       },
     }),

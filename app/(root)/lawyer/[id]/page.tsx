@@ -1,9 +1,17 @@
 "use client";
 
 import { Avatar, AvatarImage, AvatarFallback } from "@/components/ui/avatar";
-import React from "react";
+import { useParams } from "next/navigation";
+import React, { useEffect, useState } from "react";
 
 export default function LawyerProfle() {
+  const [profile, setProfile] = useState<any>(null);
+  const params = useParams();
+
+  useEffect(() => {
+    fetch(`http://34.101.147.150:8080/api/users/${params.id}`).then(setProfile);
+  }, []);
+
   return (
     <section className="container mx-auto px-4 py-8">
       <div className="grid grid-cols-1 gap-8 md:grid-cols-2">
@@ -14,7 +22,9 @@ export default function LawyerProfle() {
               <AvatarFallback>J</AvatarFallback>
             </Avatar>
             <div>
-              <h2 className="text-2xl font-semibold">John Doe</h2>
+              <h2 className="text-2xl font-semibold">
+                {profile?.data?.Data?.name}
+              </h2>
               <p className="text-sm text-muted-foreground">Lead Attorney</p>
             </div>
           </div>

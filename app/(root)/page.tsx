@@ -6,49 +6,6 @@ import React from "react";
 import { cn } from "@/lib/utils";
 import { ArrowRightIcon } from "@radix-ui/react-icons";
 
-const mockCaseData = [
-  {
-    id: "1",
-    attorney: {
-      name: "John Doe",
-      position: "Lead Attorney",
-      firm: "Acme Inc. vs. Widgets Co.",
-    },
-    category: "Intellectual property dispute over patent infringement.",
-    status: "Ongoing",
-  },
-  {
-    id: "2",
-    attorney: {
-      name: "Sarah Williams",
-      position: "Senior Associate",
-      firm: "Smith vs. Jones",
-    },
-    category: "Personal injury case from a car accident.",
-    status: "Closed",
-  },
-  {
-    id: "3",
-    attorney: {
-      name: "Michael Chen",
-      position: "Associate",
-      firm: "Greenfield vs. Citywide",
-    },
-    category: "Zoning dispute over a new development project.",
-    status: "Ongoing",
-  },
-  {
-    id: "4",
-    attorney: {
-      name: "Lisa Patel",
-      position: "Partner",
-      firm: "Acme Inc. vs. Megacorp",
-    },
-    category: "Breach of contract dispute over a supply agreement.",
-    status: "Ongoing",
-  },
-];
-
 const getAllCases = async () => {
   const res = await fetch("http://34.101.147.150:8080/api/cases");
 
@@ -76,7 +33,9 @@ export default async function Home() {
                 <AvatarFallback>J</AvatarFallback>
               </Avatar>
               <div>
-                <h3 className="text-xs font-semibold">[LAWYER NAME]</h3>
+                <h3 className="text-xs font-semibold">
+                  {/* {Data.contributor.name} */}
+                </h3>
                 <p className="text-xs text-muted-foreground">Lawyer</p>
               </div>
             </div>

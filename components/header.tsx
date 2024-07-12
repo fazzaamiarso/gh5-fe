@@ -13,6 +13,7 @@ import { signIn, signOut, useSession } from "next-auth/react";
 
 export default function Header() {
   const { data: session } = useSession();
+
   return (
     <header className="bg-background shadow-sm">
       <div className="mx-auto flex w-11/12 items-center justify-between px-4 py-3">
@@ -44,7 +45,7 @@ export default function Header() {
               <DropdownMenuContent align="end">
                 <DropdownMenuItem>
                   <Link
-                    href={`/lawyer/dasd`} // should be profile for user
+                    href={`/lawyer/${session.user.email}`} // should be profile for user
                     className="flex w-full items-center gap-2"
                     prefetch={false}
                   >

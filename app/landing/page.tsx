@@ -113,14 +113,14 @@ export default function SpotlightPreview() {
         </div>
 
         <div className="mt-24 flex flex-col items-center justify-center">
-          <h1 className="bg-opacitflex absolute relative flex justify-start bg-clip-text text-4xl font-bold text-indigo-400 text-transparent md:text-7xl">
+          <h1 className="bg-opacitflex absolute relative flex justify-start bg-clip-text text-4xl font-bold text-indigo-400 md:text-7xl">
             lawyer
           </h1>
           <HoverEffect className="max-w-7xl" items={lawyer} />
         </div>
 
         <div className="mt-24 flex flex-col items-center justify-center">
-          <h1 className="bg-opacitflex absolute relative flex justify-start bg-clip-text text-4xl font-bold text-indigo-400 text-transparent md:text-7xl">
+          <h1 className="bg-opacitflex absolute relative flex justify-start bg-clip-text text-4xl font-bold text-indigo-400 md:text-7xl">
             citizen
           </h1>
           <HoverEffect className="max-w-7xl" items={cityzen} />

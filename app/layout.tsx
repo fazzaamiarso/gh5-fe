@@ -29,7 +29,7 @@ export default function Layout({ children }: { children: ReactNode }) {
         <body
           className={cn("antialiased", fontHeading.variable, fontBody.variable)}
         >
-          <main className="mx-auto w-11/12">{children}</main>
+          <main className="mx-auto">{children}</main>
         </body>
       </SessionWrapper>
     </html>

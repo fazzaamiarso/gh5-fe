@@ -1,36 +1,31 @@
-This is a [Next.js](https://nextjs.org/) project bootstrapped with [`create-next-app`](https://github.com/vercel/next.js/tree/canary/packages/create-next-app).
+ <p align="center"><img src="./public/justify-logo.png" align="center" alt="" width="300" /></p>
 
-## Getting Started
+# Justify - Legal Assistance
 
-First, run the development server:
+Connects individuals with lawyers willing to provide pro bono assistance, ensuring access to justice and offering practical experience for junior lawyers. With user-friendly features for communication and collaboration, our platform stands as a unique solution fostering legal support and professional growth.
 
-```bash
-npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
-```
+## Features
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+- User-Lawyer Matching: Users can search for and message lawyers suitable for their case.
+- Public Case Posting: Lawyers can post cases publicly, inviting other lawyers to collaborate.
+- Case Upvoting: Users can upvote cases in the feed, ensuring that the most critical cases gain more attention.
+- Portfolio Building: Lawyers can build their professional portfolios by showcasing the cases they have resolved. ## How we built it Our team consists of three developers responsible for building the application, and one designer responsible for the app's flow and design. First, we ideated the app until we were satisfied with all aspects we wanted to achieve. Then, we started by making a prototype with drawings.
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+## What's Next?
 
-This project uses [`next/font`](https://nextjs.org/docs/basic-features/font-optimization) to automatically optimize and load Inter, a custom Google Font.
+- Implement additional features, We plan to incorporate user feedback and enhance the user experience by adding real-time chat support.
+- Expand partnerships, We aim to collaborate with more legal aid organizations to broaden our network.
+- Increase outreach, By promoting our platform to a wider audience, we hope to ensure consistent access to legal representation for each individuals.
+- Support junior lawyers, Provide ample opportunities for junior lawyers to gain valuable experience through our platform.
 
-## Learn More
+## Overview
 
-To learn more about Next.js, take a look at the following resources:
+### Tech Stack
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+- Next.js + Typescript
+- Tailwind CSS
+- shadcn/ui
+- next-auth
+- react-hook-form
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js/) - your feedback and contributions are welcome!
-
-## Deploy on Vercel
-
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
-
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/deployment) for more details.
+### Try the app

@@ -18,7 +18,7 @@ const fontBody = Inter({
 });
 
 export const metadata: Metadata = {
-  title: "Law Service",
+  title: "Justify - Law Assistance",
   description: "An app to help with Law unfairness",
 };
 

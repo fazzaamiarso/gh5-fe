@@ -32,11 +32,12 @@ export default function CaseRequest() {
   });
 
   const onSubmit: SubmitHandler<z.infer<typeof formSchema>> = async (data) => {
+    if (!session?.user?.email) return alert("Please login first!");
     const formData = new FormData();
     formData.append("case_name", data.caseName);
     formData.append("case_description", data.caseDescription);
     formData.append("document", data.caseFile);
-    formData.append("client_id", "5cdde6b7-2617-4633-b008-cf606544e59c");
+    formData.append("client_id", session?.user?.email);
 
     await fetch(`${process.env.BASE_API}/cases`, {
       method: "POST",

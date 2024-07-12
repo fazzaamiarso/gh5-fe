@@ -16,9 +16,11 @@ const getCases = async () => {
 
   const data = await res.json();
 
-  const pendingCases = data.data.filter(({ Data }: any) => {
-    return Data.status === "Pending";
-  });
+  const pendingCases = data?.data
+    ? data.data.filter(({ Data }: any) => {
+        return Data.status === "Pending";
+      })
+    : [];
 
   return {
     pendingCases,
@@ -33,7 +35,7 @@ export default function LawyerCases({ params }: { params: { id: string } }) {
     getCases().then((res) => {
       setPendingCases(res.pendingCases);
     });
-  }, []);
+  }, [getCases]);
 
   return (
     <>
@@ -43,58 +45,65 @@ export default function LawyerCases({ params }: { params: { id: string } }) {
             <div className="mt-6">
               <h3 className="text-xl font-semibold">Case Requests</h3>
               <div className="mt-4 space-y-4">
-                {pendingCases.map(({ Data }: any) => {
-                  return (
-                    <div key={Data.id} className="rounded-md bg-background p-4">
-                      <div className="flex items-center justify-between">
-                        <div>
-                          <h4 className="text-lg font-semibold">
-                            <Link href={`/case/${Data.id}`}>
-                              {Data.case_name ?? "[PLACEHOLDER CASENAME]"}
-                            </Link>
-                          </h4>
-                          <p className="text-sm text-muted-foreground">
-                            Client:{" "}
-                            {Data?.client?.name ?? "[PLACEHOLDER CLIENT]"}
-                          </p>
-                        </div>
-                        <div className="flex gap-2">
-                          <Button
-                            variant="outline"
-                            size="sm"
-                            onClick={async () => {
-                              await approveCase({
-                                id: Data.id,
-                                contributor_id: params.id,
-                              });
-                              router.refresh();
-                            }}
-                          >
-                            Approve
-                          </Button>
-                          <Button
-                            variant="outline"
-                            size="sm"
-                            className="bg-red-500 text-white hover:bg-red-600"
-                            onClick={async () => {
-                              await rejectCase({
-                                id: Data.id,
-                                contributor_id: params.id,
-                              });
+                {pendingCases.length ? (
+                  pendingCases.map(({ Data }: any) => {
+                    return (
+                      <div
+                        key={Data.id}
+                        className="rounded-md bg-background p-4"
+                      >
+                        <div className="flex items-center justify-between">
+                          <div>
+                            <h4 className="text-lg font-semibold">
+                              <Link href={`/case/${Data.id}`}>
+                                {Data.case_name ?? "[PLACEHOLDER CASENAME]"}
+                              </Link>
+                            </h4>
+                            <p className="text-sm text-muted-foreground">
+                              Client:{" "}
+                              {Data?.client?.name ?? "[PLACEHOLDER CLIENT]"}
+                            </p>
+                          </div>
+                          <div className="flex gap-2">
+                            <Button
+                              variant="outline"
+                              size="sm"
+                              onClick={async () => {
+                                await approveCase({
+                                  id: Data.id,
+                                  contributor_id: params.id,
+                                });
+                                router.refresh();
+                              }}
+                            >
+                              Approve
+                            </Button>
+                            <Button
+                              variant="outline"
+                              size="sm"
+                              className="bg-red-500 text-white hover:bg-red-600"
+                              onClick={async () => {
+                                await rejectCase({
+                                  id: Data.id,
+                                  contributor_id: params.id,
+                                });
 
-                              router.refresh();
-                            }}
-                          >
-                            Reject
-                          </Button>
+                                router.refresh();
+                              }}
+                            >
+                              Reject
+                            </Button>
+                          </div>
                         </div>
+                        <p className="mt-2 text-sm text-muted-foreground">
+                          {Data.case_description}
+                        </p>
                       </div>
-                      <p className="mt-2 text-sm text-muted-foreground">
-                        {Data.case_description}
-                      </p>
-                    </div>
-                  );
-                })}
+                    );
+                  })
+                ) : (
+                  <div>No Pending request yet!</div>
+                )}
               </div>
             </div>
           </div>
@@ -114,7 +123,12 @@ export default function LawyerCases({ params }: { params: { id: string } }) {
                     </p>
                   </div>
                   <div className="flex gap-2">
-                    <Badge variant="secondary">Ongoing</Badge>
+                    <Badge
+                      variant="secondary"
+                      className="bg-yellow-500 text-yellow-50"
+                    >
+                      On Progress
+                    </Badge>
                   </div>
                 </div>
                 <p className="mt-2 text-sm text-muted-foreground">
@@ -134,7 +148,12 @@ export default function LawyerCases({ params }: { params: { id: string } }) {
                     </p>
                   </div>
                   <div className="flex gap-2">
-                    <Badge variant="secondary">Ongoing</Badge>
+                    <Badge
+                      variant="secondary"
+                      className="bg-yellow-500 text-yellow-50"
+                    >
+                      On Progress
+                    </Badge>
                   </div>
                 </div>
                 <p className="mt-2 text-sm text-muted-foreground">
@@ -157,7 +176,12 @@ export default function LawyerCases({ params }: { params: { id: string } }) {
                     </p>
                   </div>
                   <div className="flex gap-2">
-                    <Badge variant="secondary">Closed</Badge>
+                    <Badge
+                      variant="secondary"
+                      className="bg-red-500 text-red-50"
+                    >
+                      Closed
+                    </Badge>
                   </div>
                 </div>
                 <p className="mt-2 text-sm text-muted-foreground">
@@ -176,7 +200,12 @@ export default function LawyerCases({ params }: { params: { id: string } }) {
                     </p>
                   </div>
                   <div className="flex gap-2">
-                    <Badge variant="secondary">Closed</Badge>
+                    <Badge
+                      variant="secondary"
+                      className="bg-red-500 text-red-50"
+                    >
+                      Closed
+                    </Badge>
                   </div>
                 </div>
                 <p className="mt-2 text-sm text-muted-foreground">

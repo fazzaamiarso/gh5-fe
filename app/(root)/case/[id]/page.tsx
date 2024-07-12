@@ -2,7 +2,7 @@
 
 import { Button } from "@/components/ui/button";
 import { Avatar, AvatarImage, AvatarFallback } from "@/components/ui/avatar";
-import React from "react";
+import React, { useEffect, useState } from "react";
 import Link from "next/link";
 import {
   ArrowLeftIcon,
@@ -11,8 +11,6 @@ import {
 } from "@radix-ui/react-icons";
 import { cn } from "@/lib/utils";
 import { useRouter } from "next/navigation";
-import { approveCase, rejectCase } from "../../lawyer/[id]/cases/actions";
-import { useSession } from "next-auth/react";
 
 const getCaseById = async (id: string) => {
   const res = await fetch(`${process.env.BASE_API}/cases/${id}`);
@@ -24,13 +22,15 @@ const getCaseById = async (id: string) => {
   return res.json();
 };
 
-export default async function CaseDetail({
-  params,
-}: {
-  params: { id: string };
-}) {
+export default function CaseDetail({ params }: { params: { id: string } }) {
   const router = useRouter();
-  const { data } = await getCaseById(params.id);
+  const [caseDetail, setCaseDetail] = useState<any>(null);
+
+  useEffect(() => {
+    getCaseById(params.id).then(({ data: { Data } }) => {
+      setCaseDetail(Data);
+    });
+  }, [params.id]);
 
   return (
     <section className="container mx-auto px-4 py-8">
@@ -53,11 +53,11 @@ export default async function CaseDetail({
               <div className="space-y-4 p-4">
                 <div>
                   <h4 className="font-semibold">Name</h4>
-                  <p>{data.Data.case_name}</p>
+                  <p>{caseDetail?.case_name}</p>
                 </div>
                 <div>
                   <h4 className="font-semibold">Type</h4>
-                  <p>{data.Data.case_type}</p>
+                  <p>{caseDetail?.case_type}</p>
                 </div>
                 <div>
                   <h4 className="font-semibold">Status</h4>
@@ -66,19 +66,20 @@ export default async function CaseDetail({
                       "rounded-full px-3 py-1 text-xs font-medium",
                       {
                         "bg-yellow-500 text-yellow-50":
-                          data.Data.status === "On Progress",
-                        "bg-red-500 text-red-50": data.Data.status === "Closed",
+                          caseDetail?.status === "On Progress",
+                        "bg-red-500 text-red-50":
+                          caseDetail?.status === "Closed",
                         "bg-neutral-100 text-neutral-500":
-                          data.Data.status === "Pending",
+                          caseDetail?.status === "Pending",
                       },
                     )}
                   >
-                    {data.Data.status}
+                    {caseDetail?.status}
                   </span>
                 </div>
                 <div>
                   <h4 className="font-semibold">Description</h4>
-                  <p>{data.Data.case_description}</p>
+                  <p>{caseDetail?.case_description}</p>
                 </div>
               </div>
             </div>
@@ -92,11 +93,11 @@ export default async function CaseDetail({
               <div>
                 <h2 className="font-semibold">
                   <Link href={`/lawyer/${params.id}`}>
-                    {data.Data?.contributor?.name ?? "EMPTY"}
+                    {caseDetail?.contributor?.name ?? "EMPTY"}
                   </Link>
                 </h2>
                 <p className="text-sm text-muted-foreground">
-                  {data?.Data?.contributor?.lawyer?.position ?? "EMPTY"}
+                  {caseDetail?.contributor?.lawyer?.position ?? "EMPTY"}
                 </p>
               </div>
             </div>
@@ -107,8 +108,8 @@ export default async function CaseDetail({
               </Avatar>
               <div>
                 <h2 className="font-semibold">
-                  <Link href={`/user/${data?.Data?.client?.id}`}>
-                    {data?.Data?.client?.name ?? "EMPTY"}
+                  <Link href={`/user/${caseDetail?.client?.id}`}>
+                    {caseDetail?.client?.name ?? "EMPTY"}
                   </Link>
                 </h2>
                 <p className="text-sm text-muted-foreground">Client</p>
@@ -127,7 +128,7 @@ export default async function CaseDetail({
                 <span>Suppporting Document</span>
               </div>
               <Button variant="outline" size="sm" asChild>
-                <a href={data?.Data?.document} target="_blank">
+                <a href={caseDetail?.document} target="_blank">
                   <DownloadIcon className="mr-1" /> Download
                 </a>
               </Button>

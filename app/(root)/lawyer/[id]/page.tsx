@@ -19,7 +19,7 @@ const getProfile = async (id: string) => {
 
     return profile;
   } catch (e) {
-    console.log(e!.message);
+    // console.log(e!.message);
   }
 };
 

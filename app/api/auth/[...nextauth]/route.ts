@@ -24,7 +24,11 @@ const handler = NextAuth({
 
         const resData = await res.json();
 
-        const decodedToken = jwtDecode(resData.data.token);
+        const decodedToken = jwtDecode(resData.data.token) as {
+          id: string;
+          name: string;
+          email: string;
+        };
 
         if (!res.ok) {
           return null;
@@ -32,8 +36,8 @@ const handler = NextAuth({
 
         return {
           id: decodedToken?.id,
-          name: decodedToken.name,
-          email: decodedToken?.id,
+          name: decodedToken?.name,
+          email: decodedToken?.email,
         };
       },
     }),

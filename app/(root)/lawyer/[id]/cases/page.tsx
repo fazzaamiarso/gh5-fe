@@ -7,7 +7,7 @@ const getCases = async () => {
 
   const data = await res.json();
 
-  const pendingCases = data.data.filter(({ Data }) => {
+  const pendingCases = data.data.filter(({ Data }: any) => {
     return Data.status === "Pending";
   });
 

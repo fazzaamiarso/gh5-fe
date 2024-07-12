@@ -1,12 +1,60 @@
 "use client";
 import React from "react";
-import { Spotlight } from "./Spotlight";
-import { StickyScroll } from "./scroll-reveral";
-import { ContainerScroll } from "./container-anima";
 
 import Image from "next/image";
 import { Button } from "@/components/ui/button";
 import { HoverEffect } from "./card";
+
+const lawyer = [
+  {
+    title: "accept cases submitted by Users",
+    description:
+      "- Can accept cases submitted by Users: Lawyers can review and accept cases submitted by users, allowing them to start working on those cases.",
+  },
+  {
+    title: "update case status, upload related documents",
+    description:
+      "A streaming service that offers a wide variety of award-winning TV shows, movies, anime, documentaries, and more on thousands of internet-connected devices.",
+  },
+  {
+    title: "contribute to cases",
+    description:
+      "If there is an ongoing case that interests them, lawyers may ask to contribute to the case to the uploader.",
+  },
+  {
+    title: "Portfolio update",
+    description:
+      "Lawyers can build their professional portfolios by showcasing the cases they have resolved.",
+  },
+  {
+    title: "Public Case Posting",
+    description:
+      "-  Lawyers can post cases publicly, inviting other lawyers to collaborate.",
+  },
+];
+
+const cityzen = [
+  {
+    title: "view cases",
+    description:
+      "A technology company that builds economic infrastructure for the internet.",
+  },
+  {
+    title: "chat to request cases to lawyers",
+    description:
+      "A streaming service that offers a wide variety of award-winning TV shows, movies, anime, documentaries, and more on thousands of internet-connected devices.",
+  },
+  {
+    title: "Upvote to elevate cases",
+    description:
+      "Users can upvote specific cases, which can help increase the visibility and priority of those cases among others.",
+  },
+  {
+    title: "User-Lawyer Matching",
+    description:
+      "- Users can search for and message lawyers suitable for their case..",
+  },
+];
 
 export default function SpotlightPreview() {
   return (
@@ -102,54 +150,3 @@ export default function SpotlightPreview() {
     </div>
   );
 }
-
-const lawyer = [
-  {
-    title: "accept cases submitted by Users",
-    description:
-      "- Can accept cases submitted by Users: Lawyers can review and accept cases submitted by users, allowing them to start working on those cases.",
-  },
-  {
-    title: "update case status, upload related documents",
-    description:
-      "A streaming service that offers a wide variety of award-winning TV shows, movies, anime, documentaries, and more on thousands of internet-connected devices.",
-  },
-  {
-    title: "contribute to cases",
-    description:
-      "If there is an ongoing case that interests them, lawyers may ask to contribute to the case to the uploader.",
-  },
-  {
-    title: "Portfolio update",
-    description:
-      "Lawyers can build their professional portfolios by showcasing the cases they have resolved.",
-  },
-  {
-    title: "Public Case Posting",
-    description:
-      "-  Lawyers can post cases publicly, inviting other lawyers to collaborate.",
-  },
-];
-
-export const cityzen = [
-  {
-    title: "view cases",
-    description:
-      "A technology company that builds economic infrastructure for the internet.",
-  },
-  {
-    title: "chat to request cases to lawyers",
-    description:
-      "A streaming service that offers a wide variety of award-winning TV shows, movies, anime, documentaries, and more on thousands of internet-connected devices.",
-  },
-  {
-    title: "Upvote to elevate cases",
-    description:
-      "Users can upvote specific cases, which can help increase the visibility and priority of those cases among others.",
-  },
-  {
-    title: "User-Lawyer Matching",
-    description:
-      "- Users can search for and message lawyers suitable for their case..",
-  },
-];

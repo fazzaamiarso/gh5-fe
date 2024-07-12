@@ -5,6 +5,7 @@ import { Badge } from "@/components/ui/badge";
 import Link from "next/link";
 import { useSession } from "next-auth/react";
 import { redirect } from "next/navigation";
+import { useEffect } from "react";
 const mockCaseRequestData = [
   {
     id: "1",
@@ -35,9 +36,12 @@ const mockCaseRequestData = [
 ];
 
 export default function LawyerCases() {
-  const { data: session } = useSession();
+  const { data: session, status } = useSession();
 
-  if (session?.user?.role !== "Lawyer") return redirect("/");
+  useEffect(() => {
+    if (status === "loading") return;
+    if (session?.user?.role !== "Lawyer") return redirect("/");
+  }, [session?.user]);
 
   return (
     <>

@@ -13,12 +13,11 @@ import { signIn, signOut, useSession } from "next-auth/react";
 
 export default function Header() {
   const { data: session } = useSession();
-  console.log(session?.user);
   return (
     <header className="bg-background shadow-sm">
       <div className="mx-auto flex w-11/12 items-center justify-between px-4 py-3">
         <Link href="/" className="text-lg font-semibold" prefetch={false}>
-          Law Firm
+          JUSTIFY
         </Link>
         <div className="flex items-center gap-4">
           {session?.user ? (
@@ -46,22 +45,20 @@ export default function Header() {
                 <DropdownMenuItem>
                   <Link
                     href={`/lawyer/dasd`} // should be profile for user
-                    className="flex items-center gap-2"
+                    className="flex w-full items-center gap-2"
                     prefetch={false}
                   >
-                    <div className="h-4 w-4" />
                     <span>Profile</span>
                   </Link>
                 </DropdownMenuItem>
                 <DropdownMenuSeparator />
                 <DropdownMenuItem>
-                  <Button
-                    className="flex items-center gap-2"
+                  <button
+                    className="flex w-full items-center gap-2"
                     onClick={() => signOut()}
                   >
-                    <div className="h-4 w-4" />
                     <span>Logout</span>
-                  </Button>
+                  </button>
                 </DropdownMenuItem>
               </DropdownMenuContent>
             </DropdownMenu>

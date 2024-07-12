@@ -4,11 +4,9 @@ import Link from "next/link";
 
 import { Avatar, AvatarImage, AvatarFallback } from "@/components/ui/avatar";
 import { Card } from "@/components/ui/card";
-import { Checkbox } from "@/components/ui/checkbox";
-import { Label } from "@/components/ui/label";
 import React from "react";
 import { cn } from "@/lib/utils";
-import { useSession } from "next-auth/react";
+import { ArrowRightIcon } from "@radix-ui/react-icons";
 
 const mockCaseData = [
   {
@@ -54,11 +52,9 @@ const mockCaseData = [
 ];
 
 export default function Home() {
-  const { data: session } = useSession();
-  console.log(session);
   return (
     <section className="grid grid-cols-1 gap-6 p-4 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4">
-      <div className="flex flex-col gap-4">
+      {/* <div className="flex flex-col gap-4">
         <Card className="rounded-lg bg-background p-4 shadow-md">
           <h3 className="mb-2 text-lg font-semibold">Filters</h3>
           <div className="space-y-4">
@@ -125,27 +121,30 @@ export default function Home() {
             </div>
           </div>
         </Card>
-      </div>
+      </div> */}
       {mockCaseData.map(({ id, attorney, category, status }) => {
         return (
-          <Card key={id} className="rounded-lg bg-background p-4 shadow-md">
-            <div className="flex items-center gap-4">
-              <Avatar className="h-12 w-12">
+          <Card
+            key={id}
+            className="flex h-full flex-col rounded-lg bg-background p-4 shadow-md"
+          >
+            <div className="flex items-center gap-2">
+              <Avatar className="size-8">
                 <AvatarImage src="/placeholder-user.jpg" />
                 <AvatarFallback>J</AvatarFallback>
               </Avatar>
               <div>
-                <h3 className="text-lg font-semibold">{attorney.name}</h3>
-                <p className="text-sm text-muted-foreground">
+                <h3 className="text-xs font-semibold">{attorney.name}</h3>
+                <p className="text-xs text-muted-foreground">
                   {attorney.position}
                 </p>
               </div>
             </div>
-            <div className="mt-4">
+            <div className="mb-auto mt-4">
               <h4 className="text-xl font-semibold">{attorney.firm}</h4>
               <p className="text-sm text-muted-foreground">{category}</p>
             </div>
-            <div className="mt-4 flex items-center justify-between">
+            <div className="mt-8 flex items-center justify-between">
               <span
                 className={cn("rounded-full px-3 py-1 text-xs font-medium", {
                   "bg-yellow-500 text-yellow-50": status === "Ongoing",
@@ -156,10 +155,10 @@ export default function Home() {
               </span>
               <Link
                 href={`/case/${id}`}
-                className="text-primary hover:underline"
+                className="flex items-center gap-1 text-primary hover:underline"
                 prefetch={false}
               >
-                View Case
+                view case <ArrowRightIcon className="size-4" />
               </Link>
             </div>
           </Card>

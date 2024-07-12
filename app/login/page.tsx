@@ -21,8 +21,11 @@ import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
 import { zodResolver } from "@hookform/resolvers/zod";
+import { ArrowLeftIcon } from "@radix-ui/react-icons";
 import { signIn, useSession } from "next-auth/react";
+import Link from "next/link";
 import { redirect } from "next/navigation";
+import { useEffect } from "react";
 import { SubmitHandler, useForm } from "react-hook-form";
 import { z } from "zod";
 
@@ -42,76 +45,59 @@ export default function LoginCard() {
     await signIn("credentials", { ...data });
   };
 
-  if (session?.user) return redirect("/");
+  useEffect(() => {
+    if (session?.user) return redirect("/");
+  }, [session?.user]);
 
   return (
-    <div className="mt-10 flex items-center justify-center">
-      <Tabs defaultValue="account" className="w-[400px]">
-        <TabsList className="flex bg-destructive-foreground">
-          <TabsTrigger className="w-full shadow-none" value="account">
-            Netizen
-          </TabsTrigger>
-          <TabsTrigger className="w-full" value="password">
-            Lawyer
-          </TabsTrigger>
-        </TabsList>
-        <TabsContent className="rounded-none" value="account">
-          <Form {...form}>
-            <form onSubmit={form.handleSubmit(onSubmit)} className="space-y-8">
-              <FormField
-                control={form.control}
-                name="email"
-                render={({ field }) => (
-                  <FormItem>
-                    <FormLabel>Email</FormLabel>
-                    <FormControl>
-                      <Input placeholder="wahyu@gmail.com" {...field} />
-                    </FormControl>
-                    <FormMessage />
-                  </FormItem>
-                )}
-              />
-              <FormField
-                control={form.control}
-                name="password"
-                render={({ field }) => (
-                  <FormItem>
-                    <FormLabel>Password</FormLabel>
-                    <FormControl>
-                      <Input placeholder="******" type="password" {...field} />
-                    </FormControl>
-                    <FormMessage />
-                  </FormItem>
-                )}
-              />
-              <Button type="submit">Submit Case</Button>
-            </form>
-          </Form>
-        </TabsContent>
-        <TabsContent value="password">
-          <Card className="rounded-none border-none shadow-none">
-            <CardHeader>
-              <CardTitle>Lawyer</CardTitle>
-              <CardDescription>
-                Lorem ipsum dolor sit, amet consectetur adipisicing elit.
-              </CardDescription>
-            </CardHeader>
-            <CardContent className="space-y-2">
-              <div className="space-y-1">
-                <Label htmlFor="current">Username</Label>
-                <Input id="current" type="text" />
-              </div>
-              <div className="space-y-1">
-                <Label htmlFor="new">password</Label>
-                <Input id="new" type="password" />
-              </div>
-            </CardContent>
-            <CardFooter>
-              <Button className="w-full">sign in as lawyer</Button>
-            </CardFooter>
-          </Card>
-        </TabsContent>
-      </Tabs>
+    <div className="flex h-screen flex-col items-center justify-center">
+      <div className="w-full max-w-md">
+        <Button asChild variant="ghost">
+          <>
+            <Link href="/" className="mb-4 flex items-center gap-2">
+              <ArrowLeftIcon />
+              go to Home
+            </Link>
+          </>
+        </Button>
+        <h1 className="mb-4 text-2xl font-semibold">Login to Justify</h1>
+        <Form {...form}>
+          <form
+            onSubmit={form.handleSubmit(onSubmit)}
+            className="w-full space-y-8"
+          >
+            <FormField
+              control={form.control}
+              name="email"
+              render={({ field }) => (
+                <FormItem>
+                  <FormLabel>Email</FormLabel>
+                  <FormControl>
+                    <Input placeholder="wahyu@gmail.com" {...field} />
+                  </FormControl>
+                  <FormMessage />
+                </FormItem>
+              )}
+            />
+            <FormField
+              control={form.control}
+              name="password"
+              render={({ field }) => (
+                <FormItem>
+                  <FormLabel>Password</FormLabel>
+                  <FormControl>
+                    <Input placeholder="******" type="password" {...field} />
+                  </FormControl>
+                  <FormMessage />
+                </FormItem>
+              )}
+            />
+            <Button type="submit" className="w-full">
+              Login
+            </Button>
+          </form>
+        </Form>
+      </div>
     </div>
   );
 }

@@ -5,6 +5,7 @@ import { jwtDecode } from "jwt-decode";
 const handler = NextAuth({
   pages: {
     signIn: "/login",
+    error: "/error",
   },
   callbacks: {
     async session({ session }) {

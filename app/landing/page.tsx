@@ -43,7 +43,7 @@ const cityzen = [
   {
     title: "chat to request cases to lawyers",
     description:
-      "A streaming service that offers a wide variety of award-winning TV shows, movies, anime, documentaries, and more on thousands of internet-connected devices.",
+      "Users can request cases to lawyers through the chat feature, making the initial communication and explanation of their issues easier.",
   },
   {
     title: "Upvote to elevate cases",

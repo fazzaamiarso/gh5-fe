@@ -10,6 +10,7 @@ import {
 import Link from "next/link";
 import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar";
 import { signIn, signOut, useSession } from "next-auth/react";
+import Image from "next/image";
 
 export default function Header() {
   const { data: session } = useSession();
@@ -18,7 +19,7 @@ export default function Header() {
     <header className="bg-background shadow-sm">
       <div className="mx-auto flex w-11/12 items-center justify-between px-4 py-3">
         <Link href="/" className="text-lg font-semibold" prefetch={false}>
-          JUSTIFY
+          <Image src="/justify-logo.png" width={50} height={50} alt="" />
         </Link>
         <div className="flex items-center gap-4">
           {session?.user ? (

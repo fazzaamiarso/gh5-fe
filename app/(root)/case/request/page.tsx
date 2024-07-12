@@ -32,7 +32,7 @@ export default function CaseRequest() {
   });
 
   const onSubmit: SubmitHandler<z.infer<typeof formSchema>> = async (data) => {
-    const res = await fetch("http://34.101.147.150:8080/api/cases", {
+    const res = await fetch(`${process.env.BASE_API}/cases`, {
       method: "POST",
       body: JSON.stringify({
         case_name: data.caseName,

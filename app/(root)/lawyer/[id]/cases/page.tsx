@@ -3,7 +3,7 @@ import { Badge } from "@/components/ui/badge";
 import Link from "next/link";
 
 const getCases = async () => {
-  const res = await fetch("http://34.101.147.150:8080/api/cases");
+  const res = await fetch(`${process.env.BASE_API}/cases`);
 
   const data = await res.json();
 

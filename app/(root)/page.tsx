@@ -7,7 +7,7 @@ import { cn } from "@/lib/utils";
 import { ArrowRightIcon } from "@radix-ui/react-icons";
 
 const getAllCases = async () => {
-  const res = await fetch("http://34.101.147.150:8080/api/cases");
+  const res = await fetch(`${process.env.BASE_API}/cases`);
 
   if (!res.ok) {
     throw new Error("Failed to fetch data");

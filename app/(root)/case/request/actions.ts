@@ -1,6 +1,6 @@
 "use server";
 export async function addComment(formData: any) {
-  const res = await fetch("http://34.101.147.150:8080/api/cases", {
+  const res = await fetch(`${process.env.BASE_API}/cases`, {
     method: "POST",
     body: JSON.stringify({
       case_name: "cari chindo islam",

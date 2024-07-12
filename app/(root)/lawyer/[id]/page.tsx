@@ -6,7 +6,7 @@ import React from "react";
 
 const getProfile = async (id: string) => {
   try {
-    const res = await fetch(`http://34.101.147.150:8080/api/users/${id}`);
+    const res = await fetch(`${process.env.BASE_API}/users/${id}`);
 
     if (!res.ok) {
       throw new Error("Failed to fetch data");

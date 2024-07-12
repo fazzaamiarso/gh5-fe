@@ -16,7 +16,7 @@ const handler = NextAuth({
       name: "Credentials",
       credentials: {},
       authorize: async (credentials) => {
-        const res = await fetch("http://34.101.147.150:8080/api/auth/login", {
+        const res = await fetch(`${process.env.BASE_API}/auth/login`, {
           method: "POST",
           body: JSON.stringify(credentials),
           headers: { "Content-Type": "application/json" },

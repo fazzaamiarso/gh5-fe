@@ -6,7 +6,7 @@ import { DownloadIcon, FileTextIcon } from "@radix-ui/react-icons";
 import { cn } from "@/lib/utils";
 
 const getCaseById = async (id: string) => {
-  const res = await fetch(`http://34.101.147.150:8080/api/cases/${id}`);
+  const res = await fetch(`${process.env.BASE_API}/cases/${id}`);
 
   if (!res.ok) {
     throw new Error("Failed to fetch data");

@@ -9,8 +9,13 @@ export default function LawyerProfle() {
   const params = useParams();
 
   useEffect(() => {
-    fetch(`http://34.101.147.150:8080/api/users/${params.id}`).then(setProfile);
+    fetch(`http://34.101.147.150:8080/api/users/${params.id}`)
+      .then((res) => res.json())
+      .then((data) => {
+        setProfile(data?.data?.Data);
+      });
   }, []);
+  console.log(profile);
 
   return (
     <section className="container mx-auto px-4 py-8">
@@ -22,9 +27,7 @@ export default function LawyerProfle() {
               <AvatarFallback>J</AvatarFallback>
             </Avatar>
             <div>
-              <h2 className="text-2xl font-semibold">
-                {profile?.data?.Data?.name}
-              </h2>
+              <h2 className="text-2xl font-semibold">{profile?.name}</h2>
               <p className="text-sm text-muted-foreground">Lead Attorney</p>
             </div>
           </div>

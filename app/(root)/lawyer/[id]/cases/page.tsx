@@ -40,7 +40,7 @@ export default function LawyerCases() {
 
   useEffect(() => {
     if (status === "loading") return;
-    if (session?.user?.role !== "Lawyer") return redirect("/");
+    // if (session?.user?.role !== "Lawyer") return redirect("/");
   }, [session?.user]);
 
   return (

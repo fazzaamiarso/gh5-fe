@@ -34,14 +34,18 @@ export default async function Home() {
               </Avatar>
               <div>
                 <h3 className="text-xs font-semibold">
-                  {/* {Data.contributor.name} */}
+                  {Data?.contributor?.name}
                 </h3>
-                <p className="text-xs text-muted-foreground">Lawyer</p>
+                <p className="text-xs text-muted-foreground">
+                  {Data?.contributor?.lawyer?.position}
+                </p>
               </div>
             </div>
             <div className="mb-auto mt-4">
-              <h4 className="text-xl font-semibold">[CASE NAME]</h4>
-              <p className="text-sm text-muted-foreground">[CATEGORY]</p>
+              <h4 className="text-xl font-semibold">{Data?.case_name}</h4>
+              <p className="line-clamp-3 text-sm text-muted-foreground">
+                {Data?.case_description}
+              </p>
             </div>
             <div className="mt-8 flex items-center justify-between">
               <span

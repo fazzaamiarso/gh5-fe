@@ -33,11 +33,11 @@ export default async function CaseDetail({
               <div className="space-y-4 p-4">
                 <div>
                   <h4 className="font-semibold">Name</h4>
-                  <p>[PLACEHOLDER]</p>
+                  <p>{data.Data.case_name}</p>
                 </div>
                 <div>
                   <h4 className="font-semibold">Type</h4>
-                  <p>[PLACEHOLDER]</p>
+                  <p>{data.Data.case_type}</p>
                 </div>
                 <div>
                   <h4 className="font-semibold">Status</h4>
@@ -61,7 +61,7 @@ export default async function CaseDetail({
               <div>
                 <h2 className="font-semibold">
                   <Link href={`/lawyer/${params.id}`}>
-                    [PLACEHOLDER LAWYER NAME]
+                    {data.Data.name ?? "EMPTY"}
                   </Link>
                 </h2>
                 <p className="text-sm text-muted-foreground">

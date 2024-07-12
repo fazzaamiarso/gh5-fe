@@ -8,7 +8,7 @@ import {
   FormLabel,
   FormMessage,
 } from "@/components/ui/form";
-import { useForm } from "react-hook-form";
+import { SubmitHandler, useForm } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { z } from "zod";
 import { Button } from "@/components/ui/button";
@@ -26,7 +26,19 @@ export default function CaseRequest() {
     resolver: zodResolver(formSchema),
   });
 
-  const onSubmit = async () => {
+  const onSubmit: SubmitHandler<z.infer<typeof formSchema>> = async (data) => {
+    const res = await fetch("http://34.101.147.150:8080/api/cases", {
+      method: "POST",
+      body: JSON.stringify({
+        case_name: data.caseName,
+        case_description: data.caseDescription,
+        client_id: "5cdde6b7-2617-4633-b008-cf606544e59c",
+      }),
+      headers: {
+        "Content-Type": "application/json",
+      },
+    });
+
     return;
   };
 

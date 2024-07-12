@@ -1,5 +1,4 @@
 import { Avatar, AvatarImage, AvatarFallback } from "@/components/ui/avatar";
-import { redirect } from "next/navigation";
 import React from "react";
 
 const getProfile = async (id: string) => {
@@ -25,8 +24,6 @@ export default async function LawyerProfle({
 
   if (!profile) return null;
 
-  if (!(profile?.role?.name?.toLowerCase() !== "lawyer")) redirect("/");
-
   return (
     <section className="container mx-auto px-4 py-8">
       <div className="grid grid-cols-1 gap-8 md:grid-cols-2">
@@ -43,7 +40,7 @@ export default async function LawyerProfle({
                 {profile?.name ?? "EMPTY"}
               </h2>
               <p className="text-sm text-muted-foreground">
-                [PLACEHOLDER POSITION]
+                {profile?.role?.name ?? "EMPTY"}
               </p>
             </div>
           </div>

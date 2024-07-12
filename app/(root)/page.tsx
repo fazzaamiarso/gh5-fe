@@ -13,7 +13,12 @@ const getAllCases = async () => {
     throw new Error("Failed to fetch data");
   }
 
-  return res.json();
+  const data = await res.json();
+  const filteredData = data.data.filter(({ Data }: { Data: any }) => {
+    return Data.status !== "Pending";
+  });
+
+  return filteredData;
 };
 
 export default async function Home() {
@@ -21,7 +26,7 @@ export default async function Home() {
 
   return (
     <section className="grid grid-cols-1 gap-6 p-4 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4">
-      {data.data.map(({ Data }: { Data: any }) => {
+      {data.map(({ Data }: { Data: any }) => {
         return (
           <Card
             key={Data.id}
@@ -50,7 +55,7 @@ export default async function Home() {
             <div className="mt-8 flex items-center justify-between">
               <span
                 className={cn("rounded-full px-3 py-1 text-xs font-medium", {
-                  "bg-yellow-500 text-yellow-50": Data.status === "Ongoing",
+                  "bg-yellow-500 text-yellow-50": Data.status === "On Progress",
                   "bg-red-500 text-red-50": Data.status === "Closed",
                   "bg-neutral-100 text-neutral-500": Data.status === "Pending",
                 })}

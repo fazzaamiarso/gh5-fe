@@ -4,36 +4,7 @@ import { Button } from "@/components/ui/button";
 import { Badge } from "@/components/ui/badge";
 import Link from "next/link";
 import { useSession } from "next-auth/react";
-import { redirect } from "next/navigation";
 import { useEffect } from "react";
-const mockCaseRequestData = [
-  {
-    id: "1",
-    client: {
-      id: "1",
-      name: "Nurhayati",
-    },
-    description: `The client is seeking legal representation in a patent
-                  infringement case against a competitor. The case involves
-                  complex technical and legal issues, and the client believes
-                  they have a strong case.`,
-    category: "Intellectual property dispute over patent infringement.",
-    status: "Ongoing",
-  },
-  {
-    id: "2",
-    client: {
-      id: "3",
-      name: "Wahyuni",
-    },
-    description: `The client is seeking legal representation in a trademark
-                  dispute with a competitor. The case involves complex branding
-                  and intellectual property issues, and the client believes they
-                  have a strong case.`,
-    category: "Trademark Dispute",
-    status: "Ongoing",
-  },
-];
 
 export default function LawyerCases() {
   const { data: session, status } = useSession();

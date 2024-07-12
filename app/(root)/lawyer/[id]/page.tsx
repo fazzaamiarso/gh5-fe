@@ -15,7 +15,7 @@ const getProfile = async (id: string) => {
     const data = await res.json();
     const profile = data?.data?.Data;
 
-    if (!(profile?.role?.name === "Lawyer")) return redirect("/");
+    // if (!(profile?.role?.name === "Lawyer")) return redirect("/");
 
     return profile;
   } catch (e) {
@@ -29,8 +29,6 @@ export default async function LawyerProfle({
   params: { id: string };
 }) {
   const profile = await getProfile(params.id);
-
-  if (!profile) return null;
 
   return (
     <section className="container mx-auto px-4 py-8">
@@ -53,7 +51,7 @@ export default async function LawyerProfle({
             </div>
           </div>
           <Button asChild variant="default" className="mt-6">
-            <Link href={`/lawyer/${profile.id}/cases`}>
+            <Link href={`/lawyer/${profile?.id}/cases`}>
               Go to cases dashboard
             </Link>
           </Button>

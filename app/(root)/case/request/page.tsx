@@ -3,6 +3,7 @@
 import {
   Form,
   FormControl,
+  FormDescription,
   FormField,
   FormItem,
   FormLabel,
@@ -69,7 +70,7 @@ export default function CaseRequest() {
                 <FormItem>
                   <FormLabel>Case Name</FormLabel>
                   <FormControl>
-                    <Input placeholder="Contoh: Gugatan Cerai" {...field} />
+                    <Input placeholder="Copyright Infringement" {...field} />
                   </FormControl>
                   <FormMessage />
                 </FormItem>
@@ -83,7 +84,7 @@ export default function CaseRequest() {
                   <FormLabel>Case Description</FormLabel>
                   <FormControl>
                     <Textarea
-                      placeholder="apa yang membuat anda ingin mengajukkan kasus ini"
+                      placeholder="describe in detail what problems are you having"
                       {...field}
                     />
                   </FormControl>
@@ -107,6 +108,10 @@ export default function CaseRequest() {
                       }}
                     />
                   </FormControl>
+                  <FormDescription>
+                    *Attach any file that may help lawyers with context and
+                    understand your problems
+                  </FormDescription>
                   <FormMessage />
                 </FormItem>
               )}

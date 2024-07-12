@@ -14,11 +14,13 @@ const getAllCases = async () => {
   }
 
   const data = await res.json();
-  const filteredData = data.data
-    ? data.data.filter(({ Data }: { Data: any }) => {
-        return Data.status !== "Pending";
-      })
-    : [];
+
+  const filteredData =
+    data.data.length > 0
+      ? data.data.filter(({ Data }: { Data: any }) => {
+          return Data.status !== "Pending";
+        })
+      : [];
 
   return filteredData;
 };
@@ -28,7 +30,7 @@ export default async function Home() {
 
   return (
     <section className="grid grid-cols-1 gap-6 p-4 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4">
-      {data.length ? (
+      {data.length > 0 ? (
         data.map(({ Data }: { Data: any }) => {
           return (
             <Card

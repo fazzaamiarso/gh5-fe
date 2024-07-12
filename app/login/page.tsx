@@ -9,11 +9,13 @@ import {
   FormLabel,
   FormControl,
   FormMessage,
+  FormDescription,
 } from "@/components/ui/form";
 import { Input } from "@/components/ui/input";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { ArrowLeftIcon } from "@radix-ui/react-icons";
 import { signIn, useSession } from "next-auth/react";
+import Image from "next/image";
 import Link from "next/link";
 import { redirect } from "next/navigation";
 import { useEffect } from "react";
@@ -51,7 +53,17 @@ export default function LoginCard() {
             </Link>
           </>
         </Button>
-        <h1 className="mb-4 text-2xl font-semibold">Login to Justify</h1>
+        <div className="flex flex-col items-center">
+          <Image
+            src="/justify-logo.png"
+            alt=""
+            width={100}
+            height={100}
+            className="text-center"
+          />
+          <h1 className="mb-4 text-2xl font-semibold">Login to Justify</h1>
+        </div>
+
         <Form {...form}>
           <form
             onSubmit={form.handleSubmit(onSubmit)}

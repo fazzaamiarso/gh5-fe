@@ -13,12 +13,7 @@ export default function SpotlightPreview() {
     <div className="h-screen">
       <section className="mx-6 flex justify-between">
         <div>
-          <Image
-            alt="justify"
-            width={180}
-            height={170}
-            src="https://imgtr.ee/images/2024/07/12/2684491883bd19583eedf96a1aaf0c34.png"
-          />
+          <Image alt="justify" width={70} height={70} src="/justify-logo.png" />
         </div>
         <div className="mt-4">
           <Button className="bg-indigo-600">Signin</Button>
@@ -53,13 +48,10 @@ export default function SpotlightPreview() {
           </div>
           <h1 className="font-manrope mx-auto mb-5 max-w-2xl text-center text-4xl font-bold leading-[50px] text-gray-900 md:text-5xl">
             Justify
-            <span className="ml-2 text-indigo-600">law lay lay layy </span>
+            <span className="ml-2 text-indigo-600">- legal assitance</span>
           </h1>
           <p className="mx-auto mb-9 max-w-2xl text-center text-base font-normal leading-7 text-gray-500">
-            Lorem ipsum dolor sit, amet consectetur adipisicing elit. Officiis
-            ipsum ullam animi perspiciatis tempora, ab illo deserunt, amet cum,
-            delectus atque voluptatum et? Quaerat dolore fugiat est maiores,
-            soluta veritatis.
+            Empowering Justice, Enabling Growth
           </p>
           <Button className="shadow-xs h-17 mb-14 inline-flex w-full items-center justify-center rounded-full bg-indigo-600 px-7 py-3 text-center text-base font-semibold text-white transition-all duration-500 hover:bg-indigo-700 md:w-auto">
             Create an account
@@ -89,37 +81,17 @@ export default function SpotlightPreview() {
         </div>
 
         <div className="mt-24 flex flex-col items-center justify-center">
-          <h1 className="bg-opacitflex absolute relative flex justify-start bg-gradient-to-b from-neutral-50 to-neutral-400 bg-clip-text text-4xl font-bold text-transparent md:text-7xl">
-            for lawyer
+          <h1 className="bg-opacitflex absolute relative flex justify-start bg-clip-text text-4xl font-bold text-indigo-400 text-transparent md:text-7xl">
+            lawyer
           </h1>
           <HoverEffect className="max-w-7xl" items={lawyer} />
         </div>
 
         <div className="mt-24 flex flex-col items-center justify-center">
-          <h1 className="bg-opacitflex absolute relative flex justify-start bg-gradient-to-b from-neutral-50 to-neutral-400 bg-clip-text text-4xl font-bold text-transparent md:text-7xl">
-            for cityzen
+          <h1 className="bg-opacitflex absolute relative flex justify-start bg-clip-text text-4xl font-bold text-indigo-400 text-transparent md:text-7xl">
+            citizen
           </h1>
           <HoverEffect className="max-w-7xl" items={cityzen} />
-        </div>
-
-        <div className="mx-auto flex max-w-7xl flex-col justify-center gap-6 px-3">
-          <div className="border-2 border-black">
-            <h1>Total lawyers</h1>
-            <p>1000 lawyers</p>
-          </div>
-          <div className="border-2 border-black">
-            <h1>Total lawyers</h1>
-            <p>1000 lawyers</p>
-          </div>
-          <div className="border-2 border-black">
-            <h1>Total lawyers</h1>
-            <p>1000 lawyers</p>
-          </div>
-          <div className="border-2 border-black">
-            <h1>Total lawyers</h1>
-            <p>1000 lawyers</p>
-            <div className="a h-20 w-20 rounded-full border-2 border-[10px] border-b-green-500 border-l-green-500 border-r-transparent border-t-transparent"></div>
-          </div>
         </div>
 
         <div className="mx-auto flex max-w-7xl justify-center justify-between p-7">
@@ -133,77 +105,51 @@ export default function SpotlightPreview() {
 
 const lawyer = [
   {
-    title: "Step 1",
-    description: "A technologsssssaaa.",
-    link: "https://stripe.com",
+    title: "accept cases submitted by Users",
+    description:
+      "- Can accept cases submitted by Users: Lawyers can review and accept cases submitted by users, allowing them to start working on those cases.",
   },
   {
-    title: "Step 2",
+    title: "update case status, upload related documents",
     description:
       "A streaming service that offers a wide variety of award-winning TV shows, movies, anime, documentaries, and more on thousands of internet-connected devices.",
-    link: "https://netflix.com",
   },
   {
-    title: "Step 3",
+    title: "contribute to cases",
     description:
-      "A multinational technology company that specializes in Internet-related services and products.",
-    link: "https://google.com",
+      "If there is an ongoing case that interests them, lawyers may ask to contribute to the case to the uploader.",
   },
   {
-    title: "Step 4",
+    title: "Portfolio update",
     description:
-      "A technology company that focuses on building products that advance Facebook's mission of bringing the world closer together.",
-    link: "https://meta.com",
+      "Lawyers can build their professional portfolios by showcasing the cases they have resolved.",
   },
   {
-    title: "setep 5",
+    title: "Public Case Posting",
     description:
-      "A multinational technology company focusing on e-commerce, cloud computing, digital streaming, and artificial intelligence.",
-    link: "https://amazon.com",
-  },
-  {
-    title: "step 5",
-    description:
-      "A multinational technology company that develops, manufactures, licenses, supports, and sells computer software, consumer electronics, personal computers, and related services.",
-    link: "https://microsoft.com",
+      "-  Lawyers can post cases publicly, inviting other lawyers to collaborate.",
   },
 ];
 
 export const cityzen = [
   {
-    title: "Step 1",
+    title: "view cases",
     description:
       "A technology company that builds economic infrastructure for the internet.",
-    link: "https://stripe.com",
   },
   {
-    title: "Step 2",
+    title: "chat to request cases to lawyers",
     description:
       "A streaming service that offers a wide variety of award-winning TV shows, movies, anime, documentaries, and more on thousands of internet-connected devices.",
-    link: "https://netflix.com",
   },
   {
-    title: "Step 3",
+    title: "Upvote to elevate cases",
     description:
-      "A multinational technology company that specializes in Internet-related services and products.",
-    link: "https://google.com",
+      "Users can upvote specific cases, which can help increase the visibility and priority of those cases among others.",
   },
   {
-    title: "Step 4",
+    title: "User-Lawyer Matching",
     description:
-      "A technology company that focuses on building products that advance Facebook's mission of bringing the world closer together.",
-    link: "https://meta.com",
-  },
-  {
-    title: "setep 5",
-    description:
-      "A multinational technology company focusing on e-commerce, cloud computing, digital streaming, and artificial intelligence.",
-    link: "https://amazon.com",
-  },
-  {
-    title: "step 5",
-    description:
-      "A multinational technology company that develops, manufactures, licenses, supports, and sells computer software, consumer electronics, personal computers, and related services.",
-    link: "https://microsoft.com",
+      "- Users can search for and message lawyers suitable for their case..",
   },
 ];

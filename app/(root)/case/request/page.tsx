@@ -33,13 +33,15 @@ export default function CaseRequest() {
         case_name: data.caseName,
         case_description: data.caseDescription,
         client_id: "5cdde6b7-2617-4633-b008-cf606544e59c",
+        case_type: "Type",
+        status: "Pending",
       }),
       headers: {
         "Content-Type": "application/json",
       },
     });
 
-    return;
+    return res;
   };
 
   return (

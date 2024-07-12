@@ -4,7 +4,6 @@ import React from "react";
 import Image from "next/image";
 import { HoverEffect } from "./card";
 import Link from "next/link";
-import { Button } from "@/components/ui/button";
 
 const lawyer = [
   {
@@ -105,10 +104,7 @@ export default function SpotlightPreview() {
             </svg>
           </Link>
           <div className="flex justify-center">
-            <img
-              src="https://pagedone.io/asset/uploads/1691054543.png"
-              alt="Dashboard image"
-            />
+            <img src="/namex.png" alt="Dashboard image" />
           </div>
         </div>
 

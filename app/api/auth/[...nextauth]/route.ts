@@ -37,7 +37,7 @@ const handler = NextAuth({
         return {
           id: decodedToken?.id,
           name: decodedToken?.name,
-          email: decodedToken?.email,
+          email: decodedToken?.id,
         };
       },
     }),

@@ -1,12 +1,26 @@
-"use client";
-
 import { Button } from "@/components/ui/button";
 import { Avatar, AvatarImage, AvatarFallback } from "@/components/ui/avatar";
 import React from "react";
 import Link from "next/link";
 import { FileTextIcon } from "@radix-ui/react-icons";
 
-export default function CaseDetail({ params }: { params: { id: string } }) {
+const getCaseById = async (id: string) => {
+  const res = await fetch(`http://34.101.147.150:8080/api/cases/${id}`);
+
+  if (!res.ok) {
+    throw new Error("Failed to fetch data");
+  }
+
+  return res.json();
+};
+
+export default async function CaseDetail({
+  params,
+}: {
+  params: { id: string };
+}) {
+  const { data } = await getCaseById(params.id);
+
   return (
     <section className="container mx-auto px-4 py-8">
       <div className="grid grid-cols-1 gap-8 md:grid-cols-3">
@@ -19,26 +33,21 @@ export default function CaseDetail({ params }: { params: { id: string } }) {
               <div className="space-y-4 p-4">
                 <div>
                   <h4 className="font-semibold">Name</h4>
-                  <p>Acme Inc. vs. Widgets Co.</p>
+                  <p>[PLACEHOLDER]</p>
                 </div>
                 <div>
                   <h4 className="font-semibold">Type</h4>
-                  <p>Intellectual Property Dispute</p>
+                  <p>[PLACEHOLDER]</p>
                 </div>
                 <div>
                   <h4 className="font-semibold">Status</h4>
                   <span className="rounded-full bg-green-500 px-3 py-1 text-xs font-medium text-green-50">
-                    Ongoing
+                    {data.Data.status}
                   </span>
                 </div>
                 <div>
                   <h4 className="font-semibold">Description</h4>
-                  <p>
-                    This is an intellectual property dispute between Acme Inc.
-                    and Widgets Co. over a patent infringement claim. The case
-                    is currently ongoing as the parties work towards a
-                    resolution.
-                  </p>
+                  <p>{data.Data.case_description}</p>
                 </div>
               </div>
             </div>
@@ -51,9 +60,13 @@ export default function CaseDetail({ params }: { params: { id: string } }) {
               </Avatar>
               <div>
                 <h2 className="font-semibold">
-                  <Link href={`/lawyer/${params.id}`}>John Doe</Link>
+                  <Link href={`/lawyer/${params.id}`}>
+                    [PLACEHOLDER LAWYER NAME]
+                  </Link>
                 </h2>
-                <p className="text-sm text-muted-foreground">Lead Attorney</p>
+                <p className="text-sm text-muted-foreground">
+                  [PLACEHOLDER LAWYER POSITION]
+                </p>
               </div>
             </div>
             <div className="flex items-center gap-4">
@@ -63,7 +76,7 @@ export default function CaseDetail({ params }: { params: { id: string } }) {
               </Avatar>
               <div>
                 <h2 className="font-semibold">
-                  <Link href={`/user/23`}>Will Smith</Link>
+                  <Link href={`/user/23`}>[PLACEHOLDER CLIENT NAME]</Link>
                 </h2>
                 <p className="text-sm text-muted-foreground">Client</p>
               </div>

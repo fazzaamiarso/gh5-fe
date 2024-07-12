@@ -18,7 +18,7 @@ import { Textarea } from "@/components/ui/textarea";
 const formSchema = z.object({
   caseName: z.string(),
   caseDescription: z.string(),
-  caseFile: z.string(),
+  caseFile: z.string().optional(),
 });
 
 export default function CaseRequest() {
